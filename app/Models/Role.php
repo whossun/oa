@@ -1,10 +1,7 @@
-<?php
+<?php namespace App\Models;
 
-namespace App\Models;
+use Zizaco\Entrust\EntrustRole;
 
-use Illuminate\Database\Eloquent\Model;
-
-class Role extends Model
+class Role extends EntrustRole
 {
-    //
 }

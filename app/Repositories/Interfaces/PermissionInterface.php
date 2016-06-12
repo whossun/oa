@@ -8,8 +8,6 @@
 
 namespace App\Repositories\Interfaces;
 
-
 interface PermissionInterface
 {
-
 }

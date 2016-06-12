@@ -28,7 +28,6 @@ class PermissionFormFields extends Job implements ShouldQueue
     public function __construct($id = null)
     {
         $this->id = $id;
-        
     }
 
     /**

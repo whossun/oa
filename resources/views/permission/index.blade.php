@@ -63,9 +63,9 @@
                             @foreach($permissions as $permission)
                                 <tr>
                                     <td> {{ $permission->id }} </td>
-                                    <td> {{ $permission->label }} </td>
+                                    <td> {{ $permission->display_name }} </td>
                                     <td> {{ $permission->name }} </td>
-                                    <td> {{ $permission->info }} </td>
+                                    <td> {{ $permission->description }} </td>
                                     <td>
                                         <a href='{{ route('permission.create', ['pid' => $permission->id]) }}' class="btn btn-xs btn-outline blue">
                                             <i class="fa fa-plus"></i>添加应用
@@ -81,9 +81,9 @@
                                 @foreach($permission['child'] as $child)
                                     <tr>
                                         <td> {{ $child->id }} </td>
-                                        <td> ┗━{{ $child->label }} </td>
+                                        <td> ┗━{{ $child->display_name }} </td>
                                         <td> {{ $child->name }} </td>
-                                        <td> {{ $child->info }} </td>
+                                        <td> {{ $child->description }} </td>
                                         <td>
                                             <a href='{{ route('permission.create', ['pid' => $child->id]) }}' class="btn btn-xs btn-outline blue">
                                                 <i class="fa fa-plus"></i>添加方法
@@ -99,9 +99,9 @@
                                     @foreach($child['child'] as $v)
                                         <tr>
                                             <td> {{ $v->id }} </td>
-                                            <td> &nbsp;&nbsp;&nbsp;&nbsp;┗━{{ $v->label }} </td>
+                                            <td> &nbsp;&nbsp;&nbsp;&nbsp;┗━{{ $v->display_name }} </td>
                                             <td> {{ $v->name }} </td>
-                                            <td> {{ $v->info }} </td>
+                                            <td> {{ $v->description }} </td>
                                             <td>
                                                 <a href='{{ route('permission.edit', ['id' => $v->id]) }}' class="btn btn-xs btn-outline yellow">
                                                     <i class="fa fa-edit"></i>编辑

@@ -11,19 +11,19 @@
             </div>
         </div>
         <div class="col-md-4">
-            <div class="form-group form-md-line-input form-md-floating-label {{ $errors->has('label') ? 'has-error' : 'has-info' }}">
+            <div class="form-group form-md-line-input form-md-floating-label {{ $errors->has('display_name') ? 'has-error' : 'has-info' }}">
                 <div class="input-group right-addon">
-                    <input type="text" class="form-control" id="label" name="label" value="{{ $label }}" />
-                    <label for="label">权限名称(中文)</label>
+                    <input type="text" class="form-control" id="display_name" name="display_name" value="{{ $display_name }}" />
+                    <label for="display_name">权限名称(中文)</label>
                     <span class="input-group-addon"></span>
                 </div>
             </div>
         </div>
         <div class="col-md-4">
-            <div class="form-group form-md-line-input form-md-floating-label {{ $errors->has('info') ? 'has-error' : 'has-info' }}">
+            <div class="form-group form-md-line-input form-md-floating-label {{ $errors->has('description') ? 'has-error' : 'has-info' }}">
                 <div class="input-group right-addon">
-                    <input type="text" class="form-control" id="info" name="info" value="{{ $info }}" />
-                    <label for="info">权限说明</label>
+                    <input type="text" class="form-control" id="description" name="description" value="{{ $description }}" />
+                    <label for="description">权限说明</label>
                     <span class="input-group-addon"></span>
                 </div>
             </div>

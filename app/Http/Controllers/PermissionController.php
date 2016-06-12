@@ -14,8 +14,8 @@ class PermissionController extends Controller
     protected $permission, $role, $count;
     protected $fields = [
         'name' => '',
-        'label' => '',
-        'info' => '',
+        'display_name' => '',
+        'description' => '',
         'pid' => 0
     ];
 

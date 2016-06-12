@@ -46,9 +46,8 @@ if (! function_exists('buildPermission')) {
             if ($per->pid == $pid) {
                 $per['id'] = $per->id;
                 $per['name'] = $per->name;
-                $per['slug'] = $per->slug;
+                $per['display_name'] = $per->display_name;
                 $per['description'] = $per->description;
-                $per['model'] = $per->model;
                 $per['child'] = buildPermission($param, $per->id);
                 $res[] = $per;
             }

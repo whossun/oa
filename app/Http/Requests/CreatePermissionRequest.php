@@ -25,7 +25,7 @@ class CreatePermissionRequest extends Request
     {
         return [
             'name'  => 'required|unique:permissions,name',
-            'label' => 'required',
+            'display_name' => 'required',
             'pid'   => 'required'
         ];
     }
@@ -40,7 +40,7 @@ class CreatePermissionRequest extends Request
         return [
             'name.required' => '请填写权限标识',
             'name.unique'   => '权限标识已存在，请重新输入',
-            'label.required'=> '请填写权限名称',
+            'display_name.required'=> '请填写权限名称',
             'pid.required'  => '未包含PID，请检查'
         ];
     }
@@ -52,8 +52,8 @@ class CreatePermissionRequest extends Request
     {
         return [
             'name' => $this->name,
-            'label' => $this->label,
-            'info' => $this->info,
+            'display_name' => $this->display_name,
+            'description' => $this->description,
             'pid' => $this->pid
         ];
     }
