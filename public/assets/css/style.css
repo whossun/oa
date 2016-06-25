@@ -4,3 +4,13 @@
 .page-content-white .page-title {
     margin: 15px 0;
 }
+
+/*权限*/
+.permission_list{ border:solid 1px #eee;margin: 0}
+.permission_list .checkbox-inline{ padding-top: 0}
+.permission_list > dt{ background-color:#efefef;padding:5px 10px}
+.permission_list > dd{ padding:10px; padding-left:30px}
+.permission_list > dd > dl{ border-bottom:solid 1px #eee; padding:5px 0; margin: 0}
+.permission_list > dd > dl > dt{ display:inline-block;float:left;white-space:nowrap;width:100px}
+.permission_list > dd > dl > dd{ margin-left:100px;}
+.permission_list > dd > dl > dd > label{ padding-right:10px}

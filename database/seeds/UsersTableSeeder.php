@@ -7,8 +7,6 @@ class UsersTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
     public function run()
     {
@@ -16,8 +14,8 @@ class UsersTableSeeder extends Seeder
             'username' => 'admin',
             'realname' => '管理员',
             'password' => 'admin',
-            'sex'      => '男',
-            'status'   => 1
+            'sex' => '男',
+            'status' => 1,
         ];
         User::create($user);
     }

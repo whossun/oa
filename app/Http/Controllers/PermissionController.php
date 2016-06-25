@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests;
 use App\Http\Requests\CreatePermissionRequest;
 use App\Http\Requests\UpdatePemissionRequest;
 use App\Models\Permission;
@@ -16,7 +15,7 @@ class PermissionController extends Controller
         'name' => '',
         'display_name' => '',
         'description' => '',
-        'pid' => 0
+        'pid' => 0,
     ];
 
     public function __construct(Permission $permission, Role $role)
@@ -34,14 +33,16 @@ class PermissionController extends Controller
      */
     public function index()
     {
-        $data = $this->permission->all();
-        $permissions = buildPermission($data);
+        $permissions = buildPermission($this->permission->all());
+
         return view('permission.index', compact('permissions'));
     }
 
     /**
      * Show the form for creating a new resource.
-     * @param  \Illuminate\Http\Request  $request
+     *
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function create(Request $request)
@@ -50,13 +51,15 @@ class PermissionController extends Controller
             $data[$field] = old($field, $value);
         }
         $data['pid'] = (int) $request->get('pid');
+
         return view('permission.create', $data);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\CreatePermissionRequest  $request
+     * @param \App\Http\Requests\CreatePermissionRequest $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(CreatePermissionRequest $request)
@@ -65,13 +68,15 @@ class PermissionController extends Controller
         if ($this->permission->create($data)) {
             return redirect('/permission')->withSuccess('添加成功');
         }
+
         return redirect('/permission')->withErrors('添加失败');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -82,40 +87,45 @@ class PermissionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $data['id'] = (int) $id;
-        $permission = $this->permission->find((int) $id);
+        $data['id'] = $id;
+        $permission = $this->permission->find($id);
         foreach ($this->fields as $field => $value) {
             $data[$field] = old($field, $permission->$field);
         }
+
         return view('permission.edit', $data);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdatePemissionRequest  $request
-     * @param  int  $id
+     * @param \App\Http\Requests\UpdatePemissionRequest $request
+     * @param int                                       $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(UpdatePemissionRequest $request, $id)
     {
         if (
-            $this->permission->where('id', $id)->update($request->except(['_method', '_token']))
+            $this->permission->find($id)->update($request->only(['name', 'display_name', 'description', 'pid']))
         ) {
             return redirect()->route('permission.index')->withSuccess('更新成功');
         }
+
         return redirect()->route('permission.index')->withErrors('更新失败');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -123,7 +133,7 @@ class PermissionController extends Controller
         $child = $this->permission->where('pid', $id)->first();
         if ($child) {
             return redirect()->back()
-                ->withErrors("请先将该权限的子权限删除后再做删除操作!");
+                ->withErrors('请先将该权限的子权限删除后再做删除操作!');
         }
         $this->permission->destroy($id);
         return redirect()->route('permission.index')->withSuccess('删除成功');

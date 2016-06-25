@@ -36,8 +36,6 @@ class AuthController extends Controller
 
     /**
      * Create a new authentication controller instance.
-     *
-     * @return void
      */
     public function __construct()
     {
@@ -47,7 +45,8 @@ class AuthController extends Controller
     /**
      * Get a validator for an incoming registration request.
      *
-     * @param  array  $data
+     * @param array $data
+     *
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
@@ -61,7 +60,8 @@ class AuthController extends Controller
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
+     * @param array $data
+     *
      * @return User
      */
     protected function create(array $data)
@@ -75,6 +75,7 @@ class AuthController extends Controller
 
     /**
      * @param LoginRequest $request
+     *
      * @return $this|\Illuminate\Http\RedirectResponse
      */
     public function login(LoginRequest $request)
@@ -86,11 +87,13 @@ class AuthController extends Controller
                 if (Auth::attempt($auth, $request->has('remember'))) {
                     return redirect()->intended('/');
                 }
+
                 return redirect()->back()->withInput()->withErrors('用户名或密码错误,请重新输入!');
             } else {
                 return redirect()->back()->withInput()->withErrors('该用户被锁定禁止登陆,请联系系统管理员!');
             }
         }
+
         return redirect()->back()->withInput()->withErrors('用户不存在,请先注册!');
     }
 }

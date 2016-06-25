@@ -11,7 +11,7 @@
                 <i class="fa fa-angle-right"></i>
             </li>
             <li>
-                <a href="{{ route('role.index') }}">权限管理</a>
+                <a href="{{ route('permission.index') }}">权限管理</a>
             </li>
         </ul>
     </div>

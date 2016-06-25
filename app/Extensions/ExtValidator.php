@@ -10,7 +10,6 @@ use Illuminate\Validation\Validator;
  */
 class ExtValidator extends Validator
 {
-
     /*只允许英文字母组合A-Za-z*/
     public function validateEngAlpha($attribute, $value)
     {
@@ -71,26 +70,28 @@ class ExtValidator extends Validator
     public function validateSelfUrl($attribute, $value)
     {
         $domain = url('');
-        return (stripos($value, $domain) === false) ? false: true;
+
+        return (stripos($value, $domain) === false) ? false : true;
     }
 
     /**
      * 验证枚举类型
-     * 'enum:0,1,-1'
+     * 'enum:0,1,-1'.
      */
     public function validateEnum($attribute, $value, $parameters)
     {
         $acceptable = $parameters;  //传入的参数$parameters已经数组化
-        return ($this->validateRequired($attribute, $value) && in_array($value, $acceptable, true));
+        return $this->validateRequired($attribute, $value) && in_array($value, $acceptable, true);
     }
 
     /**
      * 验证外链地址（使用正则）
-     * [@stephenhay] 参考 https://mathiasbynens.be/demo/url-regex
+     * [@stephenhay] 参考 https://mathiasbynens.be/demo/url-regex.
      */
     public function validateUrlLink($attribute, $value)
     {
         $regex = '@^(https?|ftp)://[^\s/$.?#].[^\s]*$@iS';
+
         return preg_match($regex, trim(e($value)));
     }
 }

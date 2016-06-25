@@ -52,11 +52,10 @@
                             <thead>
                             <tr>
                                 <th> # </th>
-                                <th> 用户名 </th>
-                                <th> 真实姓名 </th>
-                                <th> 性别 </th>
-                                <th> 联系电话 </th>
-                                <th> 帐号状态 </th>
+                                <th> 角色标识 </th>
+                                <th> 角色名称 </th>
+                                <th> 角色说明 </th>
+                                <th> 操作 </th>
                             </tr>
                             </thead>
                             <tbody>

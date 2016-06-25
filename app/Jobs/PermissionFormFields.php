@@ -18,11 +18,12 @@ class PermissionFormFields extends Job implements ShouldQueue
         'name' => '',
         'label' => '',
         'info' => '',
-        'pid' => 0
+        'pid' => 0,
     ];
 
     /**
      * Create a new job instance.
+     *
      * @param $id
      */
     public function __construct($id = null)
@@ -45,6 +46,7 @@ class PermissionFormFields extends Job implements ShouldQueue
             $fields[$fieldName] = old($fieldName, $fieldValue);
         }
         $fields['pid'] = $this->pid;
+
         return true;
     }
 

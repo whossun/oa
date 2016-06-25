@@ -24,9 +24,9 @@ class UpdatePemissionRequest extends Request
     public function rules()
     {
         return [
-            'name'  => 'required',
-            'label' => 'required',
-            'pid'   => 'required'
+            'name' => 'required',
+            'display_name' => 'required',
+            'pid' => 'required',
         ];
     }
 
@@ -39,8 +39,8 @@ class UpdatePemissionRequest extends Request
     {
         return [
             'name.required' => '请填写权限标识',
-            'label.required'=> '请填写权限名称',
-            'pid.required'  => '未包含PID，请检查'
+            'display_name.required' => '请填写权限名称',
+            'pid.required' => '未包含PID，请检查',
         ];
     }
 }

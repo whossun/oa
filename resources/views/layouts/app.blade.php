@@ -44,10 +44,10 @@
     <!-- BEGIN CONTENT -->
     <div class="page-content-wrapper">
         <!-- BEGIN CONTENT BODY -->
-        <div class="page-content">
+        <div class="page-content" id="pjax-container">
             <!-- BEGIN PAGE HEADER-->
             <!-- BEGIN THEME PANEL -->
-            <!-- @include('layouts.theme') -->
+            {{--<!-- @include('layouts.theme') -->--}}
             <!-- END THEME PANEL -->
             <!-- BEGIN PAGE BAR -->
 
@@ -101,6 +101,7 @@
 <script src="{{ asset('assets/js/layout.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('assets/js/quick-sidebar.min.js') }}" type="text/javascript"></script>
 <!-- END THEME LAYOUT SCRIPTS -->
+
 @yield('module_js')
 </body>
 

@@ -11,6 +11,9 @@
 |
 */
 
+
+//Route::post('login', 'Auth\AuthController@singin');
+
 Route::get('/', 'HomeController@index');
 
 Route::auth();
@@ -18,4 +21,3 @@ Route::auth();
 Route::resource('user', 'UserController');
 Route::resource('role', 'RoleController');
 Route::resource('permission', 'PermissionController');
-//Route::post('login', 'Auth\AuthController@singin');
