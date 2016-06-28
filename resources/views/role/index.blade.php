@@ -59,20 +59,25 @@
                             </tr>
                             </thead>
                             <tbody>
-                            {{--@foreach($users as $user)
+                            @foreach($roles as $role)
                                 <tr>
-                                    <td> {{ $user->id }} </td>
-                                    <td> {{ $user->username }} </td>
-                                    <td> {{ $user->realname }} </td>
-                                    <td> {{ $user->sex }} </td>
-                                    <td> {{ $user->phone }} </td>
-                                    @if ($user->status)
-                                        <td> <span class="label label-success"> 正常 </span> </td>
-                                    @else
-                                        <td> <span class="label label-danger"> 禁用 </span> </td>
-                                    @endif
+                                    <td> {{ $role->id }} </td>
+                                    <td> {{ $role->name }} </td>
+                                    <td> {{ $role->display_name }} </td>
+                                    <td> {{ $role->description }} </td>
+                                    <td>
+                                        <a href='{{ route('role.show', ['id' => $role->id]) }}' class="btn btn-xs btn-outline blue">
+                                            <i class="fa fa-search"></i>查看
+                                        </a>
+                                        <a href='{{ route('role.edit', ['id' => $role->id]) }}' class="btn btn-xs btn-outline yellow">
+                                            <i class="fa fa-edit"></i>编辑
+                                        </a>
+                                        <a href='javascript:;' class="btn btn-xs btn-outline red remove" data-role-id="{{ $role->id }}" data-toggle="confirmation" data-singleton="true">
+                                            <i class="fa fa-remove"></i>删除
+                                        </a>
+                                    </td>
                                 </tr>
-                            @endforeach--}}
+                            @endforeach
                             </tbody>
                         </table>
                     </div>

@@ -4,7 +4,7 @@
         <div class="col-md-4">
             <div class="form-group form-md-line-input form-md-floating-label {{ $errors->has('name') ? 'has-error' : 'has-info' }}">
                 <div class="input-group right-addon">
-                    <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}" />
+                    <input type="text" class="form-control" id="name" name="name" value="{{ $role['name'] }}" />
                     <label for="name">角色标识(英文)</label>
                     <span class="input-group-addon"></span>
                 </div>
@@ -13,7 +13,7 @@
         <div class="col-md-4">
             <div class="form-group form-md-line-input form-md-floating-label {{ $errors->has('display_name') ? 'has-error' : 'has-info' }}">
                 <div class="input-group right-addon">
-                    <input type="text" class="form-control" id="display_name" name="display_name" value="{{ old('display_name') }}" />
+                    <input type="text" class="form-control" id="display_name" name="display_name" value="{{ $role['display_name'] }}" />
                     <label for="display_name">角色名称(中文)</label>
                     <span class="input-group-addon"></span>
                 </div>
@@ -22,7 +22,7 @@
         <div class="col-md-4">
             <div class="form-group form-md-line-input form-md-floating-label {{ $errors->has('description') ? 'has-error' : 'has-info' }}">
                 <div class="input-group right-addon">
-                    <input type="text" class="form-control" id="description" name="description" value="{{ old('description') }}" />
+                    <input type="text" class="form-control" id="description" name="description" value="{{ $role['description'] }}" />
                     <label for="description">角色说明</label>
                     <span class="input-group-addon"></span>
                 </div>

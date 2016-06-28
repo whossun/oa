@@ -40,12 +40,13 @@ class RoleController extends Controller
      */
     public function create()
     {
-        $data = [];
+        $role = [];
         foreach ($this->fields as $field => $value) {
-            $data[$field] = old($field, $value);
+            $role[$field] = old($field, $value);
         }
         $permissions = buildPermission($this->permission->all());
-        return view('role.create', compact('data', 'permissions'));
+        //dd(compact('data', 'permissions'));
+        return view('role.create', compact('role', 'permissions'));
     }
 
     /**
@@ -57,7 +58,14 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        $data = $request->all();
+
+        if ($role = $this->role->create($data)) {
+            $role->attachPermissions($data['permission']);
+            return redirect('/role')->withSuccess('添加成功');
+        }
+
+        return redirect('/role')->withErrors('添加失败');
     }
 
     /**
