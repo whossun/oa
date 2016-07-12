@@ -55,7 +55,7 @@
                                 <th> 角色标识 </th>
                                 <th> 角色名称 </th>
                                 <th> 角色说明 </th>
-                                <th> 操作 </th>
+                                <th width="20%"> 操作 </th>
                             </tr>
                             </thead>
                             <tbody>
@@ -93,4 +93,17 @@
             </div>
         </div>
     </div>
+@stop
+@section('module_js')
+<script type="text/javascript">
+    $('.remove').on('confirmed.bs.confirmation', function () {
+        var id = $(this).data('role-id');
+        console.log(id);
+        //$('#del_form').attr('action', '/permission/' + id).submit();
+    });
+
+    $('.remove').on('canceled.bs.confirmation', function () {
+        return false;
+    });
+</script>
 @stop

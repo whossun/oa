@@ -160,6 +160,7 @@ return [
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Zizaco\Entrust\EntrustServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
+        Whossun\Toastr\ToastrServiceProvider::class,
     ],
 
     /*
@@ -206,6 +207,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Entrust' => Zizaco\Entrust\EntrustFacade::class,
+        'Toastr'  => Whossun\Toastr\Facades\Toastr::class,
     ],
 
 ];

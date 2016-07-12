@@ -32,33 +32,24 @@
 </div>
 @stop
 @section('module_js')
-    <script type="text/javascript">
+<script type="text/javascript">
 
-        $(function(){
-
-
-            $(".permission_list dt input:checkbox").click(function(){
-                $(this).closest("dl").find("dd input:checkbox").prop("checked",$(this).prop("checked"));
-            });
-            $(".permission_list2 dd input:checkbox").click(function(){
-                var l =$(this).parent().parent().find("input:checked").length;
-                var l2=$(this).parents(".permission_list").find(".permission_list2 dd").find("input:checked").length;
-                if($(this).prop("checked")){
-                    $(this).closest("dl").find("dt input:checkbox").prop("checked",true);
-                    $(this).parents(".permission_list").find("dt").first().find("input:checkbox").prop("checked",true);
-                }
-                else{
-                    if(l==0){
-                        $(this).closest("dl").find("dt input:checkbox").prop("checked",false);
-                    }
-                    if(l2==0){
-                        $(this).parents(".permission_list").find("dt").first().find("input:checkbox").prop("checked",false);
-                    }
-                }
-            });
+    $(function(){
+        $(".permission_list dt input:checkbox").click(function(){
+            $(this).closest("dl").find("dd input:checkbox").prop("checked",$(this).prop("checked"));
         });
+        $(".permission_list2 dt input:checkbox").click(function () {
+            $(this).parents(".permission_list").find("dt").first().find("input:checkbox").prop("checked",true);
+        });
+        $(".permission_list2 dd input:checkbox").click(function(){
+            if(this.checked){
+                $(this).closest("dl").find("dt input:checkbox").prop("checked",true);
+                $(this).parents(".permission_list").find("dt").first().find("input:checkbox").prop("checked",true);
+            }
+        });
+    });
 
-    </script>
+</script>
 
 
 @stop

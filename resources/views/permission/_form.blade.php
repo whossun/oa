@@ -29,12 +29,44 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group form-md-radios">
+                <label>权限类型</label>
+                <div class="md-radio-inline">
+                    <div class="md-radio {{ $errors->has('is_menu') ? 'has-error' : 'has-info' }}">
+                        <input type="radio" class="md-radiobtn" name="is_menu" id="is_menu1" value="1">
+                        <label for="is_menu1">
+                            <span class="inc"></span>
+                            <span class="check"></span>
+                            <span class="box"></span> 菜单
+                        </label>
+                    </div>
+                    <div class="md-radio has-error">
+                        <input type="radio" checked class="md-radiobtn" name="is_menu" id="is_menu2" value="0">
+                        <label for="is_menu2">
+                            <span class="inc"></span>
+                            <span class="check"></span>
+                            <span class="box"></span> 功能
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <div class="row">
     <div class="col-md-8 col-md-offset-4">
         <div class="form-actions noborder">
-            <button class="btn blue margin-right-10" type="submit">Submit</button>
-            <button class="btn default" type="button">Cancel</button>
+            <button data-loading-text="Loading..." class="btn blue mt-ladda-btn ladda-button submit-btn margin-right-10" data-style="slide-right">
+                <span class="ladda-label">Submit</span>
+                <span class="ladda-spinner"></span>
+                <span class="ladda-spinner"></span>
+                <div class="ladda-progress" style="width: 127px;"></div>
+            </button>
+            <button class="btn default" type="button" onclick="javascript:history.back()">Cancel</button>
+
+
         </div>
     </div>
 </div>

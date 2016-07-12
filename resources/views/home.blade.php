@@ -3,7 +3,7 @@
 <div class="page-bar">
     <ul class="page-breadcrumb">
         <li>
-            <a href="index.html">Home</a>
+            <a href="/">Home</a>
             <i class="fa fa-angle-right"></i>
         </li>
         <li>

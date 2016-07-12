@@ -1,10 +1,10 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Permission;
 use App\Models\Role;
 use Illuminate\Http\Request;
+use Toastr;
 
 class RoleController extends Controller
 {
@@ -14,6 +14,7 @@ class RoleController extends Controller
         'name' => '',
         'display_name' => '',
         'description' => '',
+        'perms' => [],
     ];
 
     public function __construct(Role $role, Permission $permission)
@@ -40,13 +41,19 @@ class RoleController extends Controller
      */
     public function create()
     {
-        $role = [];
-        foreach ($this->fields as $field => $value) {
-            $role[$field] = old($field, $value);
+        $data = [];
+        $data['permissionAll']=[];
+        foreach ($this->fields as $field => $default) {
+            $data[$field] = old($field, $default);
         }
-        $permissions = buildPermission($this->permission->all());
-        //dd(compact('data', 'permissions'));
-        return view('role.create', compact('role', 'permissions'));
+        $arr = Permission::all()->toArray();
+
+        foreach ($arr as $v) {
+            $data['permissionAll'][$v['cid']][] = $v;
+        }
+        return view('role.create', $data);
+
+
     }
 
     /**
@@ -62,10 +69,11 @@ class RoleController extends Controller
 
         if ($role = $this->role->create($data)) {
             $role->attachPermissions($data['permission']);
-            return redirect('/role')->withSuccess('添加成功');
+            Toastr::success('添加成功');
+            return redirect('/role');
         }
-
-        return redirect('/role')->withErrors('添加失败');
+        Toastr::error('添加失败');
+        return redirect('/role');
     }
 
     /**
@@ -89,7 +97,29 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-        //
+        $role = $this->role->find($id);
+        if (! $role) {Toastr::error('该角色不存在');return redirect('/role');}
+        $permissions = [];
+        if ($role->perms) {
+            foreach ($role->perms as $v) {
+                $permissions[] = $v->id;
+            }
+        }
+        //dd($role->perms);
+        $role->perms = $permissions;
+
+        foreach (array_keys($this->fields) as $field) {
+            $data[$field] = old($field, $role->$field);
+        }
+        /*$arr = $this->permission->all()->toArray();
+
+        foreach ($arr as $v) {
+            $data['permissionAll'][$v['pid']][] = $v;
+        }*/
+        $data['permissions'] = buildPermission($this->permission->all());
+        $data['id'] = $id;
+        //dd($data);
+        return view('role.edit', $data);
     }
 
     /**

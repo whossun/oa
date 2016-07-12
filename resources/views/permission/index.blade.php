@@ -22,8 +22,7 @@
     </h3>
 @stop
 @section('page-body')
-    @include('layouts.success')
-    @include('layouts.error')
+
     <div class="row">
         <div class="col-md-12">
             <div class="portlet box blue">
@@ -53,10 +52,11 @@
                             <thead>
                             <tr>
                                 <th> # </th>
-                                <th> 权限标识 </th>
                                 <th> 权限名称 </th>
+                                <th> 权限规则 </th>
                                 <th> 权限说明 </th>
-                                <th> 操作 </th>
+                                <th> 权限类型 </th>
+                                <th width="20%"> 操作 </th>
                             </tr>
                             </thead>
                             <tbody>
@@ -66,6 +66,11 @@
                                     <td> {{ $permission->display_name }} </td>
                                     <td> {{ $permission->name }} </td>
                                     <td> {{ $permission->description }} </td>
+                                    @if($permission->is_menu)
+                                        <td> <span class="label label-success"> 菜单 </span> </td>
+                                    @else
+                                        <td> <span class="label label-warning"> 功能 </span> </td>
+                                    @endif
                                     <td>
                                         <a href='{{ route('permission.create', ['pid' => $permission->id]) }}' class="btn btn-xs btn-outline blue">
                                             <i class="fa fa-plus"></i>添加应用
@@ -81,9 +86,14 @@
                                 @foreach($permission['child'] as $child)
                                     <tr>
                                         <td> {{ $child->id }} </td>
-                                        <td> ┗━{{ $child->display_name }} </td>
+                                        <td> ┗━ {{ $child->display_name }} </td>
                                         <td> {{ $child->name }} </td>
                                         <td> {{ $child->description }} </td>
+                                        @if($child->is_menu)
+                                            <td> <span class="label label-success"> 菜单 </span> </td>
+                                        @else
+                                            <td> <span class="label label-warning"> 功能 </span> </td>
+                                        @endif
                                         <td>
                                             <a href='{{ route('permission.create', ['pid' => $child->id]) }}' class="btn btn-xs btn-outline blue">
                                                 <i class="fa fa-plus"></i>添加方法
@@ -99,9 +109,14 @@
                                     @foreach($child['child'] as $v)
                                         <tr>
                                             <td> {{ $v->id }} </td>
-                                            <td> &nbsp;&nbsp;&nbsp;&nbsp;┗━{{ $v->display_name }} </td>
+                                            <td> &nbsp;&nbsp;&nbsp;&nbsp;┗━ {{ $v->display_name }} </td>
                                             <td> {{ $v->name }} </td>
                                             <td> {{ $v->description }} </td>
+                                            @if($v->is_menu)
+                                                <td> <span class="label label-success"> 菜单 </span> </td>
+                                            @else
+                                                <td> <span class="label label-warning"> 功能 </span> </td>
+                                            @endif
                                             <td>
                                                 <a href='{{ route('permission.edit', ['id' => $v->id]) }}' class="btn btn-xs btn-outline yellow">
                                                     <i class="fa fa-edit"></i>编辑
@@ -135,22 +150,15 @@
     </form>
 @stop
 @section('module_js')
-    <script type="text/javascript">
-        jQuery(document).ready(function() {
-            $('.remove').on('confirmed.bs.confirmation', function () {
-                var id = $(this).attr('data-permission-id');
-                $('#del_form').attr('action', '/permission/' + id).submit();
-                //window.href().reload();
-            });
+<script type="text/javascript">
+    $('.remove').on('confirmed.bs.confirmation', function () {
+        var id = $(this).data('permission-id');
+        console.log(id);
+        //$('#del_form').attr('action', '/permission/' + id).submit();
+    });
 
-            $('.remove').on('canceled.bs.confirmation', function () {
-                alert('You canceled action #1');
-            });
-        });
-
-    </script>
-
-
-
-
+    $('.remove').on('canceled.bs.confirmation', function () {
+        return false;
+    });
+</script>
 @stop

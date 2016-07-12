@@ -39,6 +39,7 @@ class EntrustSetupTables extends Migration
             $table->string('display_name');
             $table->string('description')->nullable();
             $table->integer('pid');
+            $table->boolean('is_menu')->default(0);
             $table->timestamps();
         });
 

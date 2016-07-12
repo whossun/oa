@@ -13,6 +13,8 @@
     <link href="{{ asset('assets/css/simple-line-icons.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/css/bootstrap-switch.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/css/toastr.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/css/ladda-themeless.min.css') }}" rel="stylesheet" type="text/css" />
     <!-- END GLOBAL MANDATORY STYLES -->
 
     <!-- BEGIN THEME GLOBAL STYLES -->
@@ -91,6 +93,9 @@
 <script src="{{ asset('assets/js/jquery.blockui.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('assets/js/bootstrap-switch.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('assets/js/bootstrap-confirmation.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('assets/js/toastr.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('assets/js/spin.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('assets/js/ladda.min.js') }}" type="text/javascript"></script>
 <!-- END CORE PLUGINS -->
 
 <!-- BEGIN THEME GLOBAL SCRIPTS -->
@@ -101,7 +106,23 @@
 <script src="{{ asset('assets/js/layout.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('assets/js/quick-sidebar.min.js') }}" type="text/javascript"></script>
 <!-- END THEME LAYOUT SCRIPTS -->
+{!! toastr()->message() !!}
+<script>
+    Ladda.bind( '.submit-btn', {
+        callback: function( instance ) {
+            var progress = 0;
+            var interval = setInterval( function() {
+                progress = Math.min( progress + Math.random() * 0.1, 1 );
+                instance.setProgress( progress );
 
+                if( progress === 1 ) {
+                    instance.stop();
+                    clearInterval( interval );
+                }
+            }, 200 );
+        }
+    } );
+</script>
 @yield('module_js')
 </body>
 

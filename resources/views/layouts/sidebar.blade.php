@@ -14,7 +14,7 @@
             <li class="nav-item start">
                 <a href="javascript:;" class="nav-link nav-toggle">
                     <i class="icon-home"></i>
-                    <span class="title">我的桌面</span>
+                    <span class="title">个人事务</span>
                     <span class="arrow"></span>
                 </a>
                 <ul class="sub-menu">

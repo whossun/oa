@@ -7,6 +7,7 @@ use App\Http\Requests\CreatePermissionRequest;
 use App\Http\Requests\UpdatePemissionRequest;
 use App\Models\Permission;
 use App\Models\Role;
+use Toastr;
 
 class PermissionController extends Controller
 {
@@ -34,7 +35,6 @@ class PermissionController extends Controller
     public function index()
     {
         $permissions = buildPermission($this->permission->all());
-
         return view('permission.index', compact('permissions'));
     }
 
@@ -66,10 +66,11 @@ class PermissionController extends Controller
     {
         $data = $request->all();
         if ($this->permission->create($data)) {
-            return redirect('/permission')->withSuccess('添加成功');
+            Toastr::success('添加成功');
+            return redirect('/permission');
         }
-
-        return redirect('/permission')->withErrors('添加失败');
+        Toastr::error('添加失败');
+        return redirect('/permission');
     }
 
     /**
